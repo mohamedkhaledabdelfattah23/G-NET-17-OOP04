@@ -1,4 +1,6 @@
-﻿using System.Numerics;
+﻿using Assignment_04_OOP.BookingTicket;
+using Assignment_04_OOP.BookingTicket.Inheritance;
+using System.Numerics;
 using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -53,12 +55,53 @@ namespace Assignment_04_OOP
             #endregion
 
 
+            Cinema cinema = new Cinema();
+            cinema.OpenCinema();
 
 
 
+            Console.WriteLine("\n========== SetPrice Test ==========");
+
+
+            StandardTicket t1 = new StandardTicket("Inception", 120, "A-5");
+
+
+            Console.WriteLine("Setting price directly: 150");
+            t1.SetPrice(150);
+
+
+            Console.WriteLine("Setting price with multiplier: 100 x 1.5 = 150");
+            t1.SetPrice(100, 1.5m);
+
+
+            VIPTicket t2 = new VIPTicket("Avengers", 200, true);
+            IMAXTicket t3 = new IMAXTicket("Dune", 180, false);
 
 
 
+            cinema.AddTicket(t1);
+            cinema.AddTicket(t2);
+            cinema.AddTicket(t3);
+
+            cinema.PrintAllTickets();
+
+            ProcessTicket(t2);
+
+            cinema.CloseCinema();
         }
+
+
+
+        static void ProcessTicket(Ticket t)
+        {
+            Console.WriteLine("\n========== Process Single Ticket ==========");
+            t.PrintTicket();
+        }
+
+
+
+
+
+   
     }
 }
